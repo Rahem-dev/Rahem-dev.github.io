@@ -1,13 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Abdulrahem | Backend and AI Developer</title>
-  </head>
-  <body>
-    <h1>Abdulrahem</h1>
-    <p>Backend and AI developer building immersive web experiences.</p>
-    <p>Contact: your-dev-email@gmail.com</p>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abdulrahem | Backend and AI Engineer</title>
+<meta name="description" content="Abdulrahem is a backend and AI engineer building production backends and language-model agents.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23000'/%3E%3Cpath d='M14 50 32 12l18 38M21 38h22' fill='none' stroke='%23FFC66B' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff;--muted:rgba(255,255,255,.62);--line:rgba(255,255,255,.14);--amber:#FFC66B;
+--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:#000;color:var(--ink);font:400 1.0625rem/1.65 var(--sans);min-height:100vh}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+header,main,footer{position:relative;z-index:1}
+a{color:inherit}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+[tabindex="-1"]:focus{outline:none}
+.wrap{max-width:1280px;margin:auto;padding-inline:clamp(1.25rem,5vw,5rem)}
+.mono{font-family:var(--mono)}
+
+/* Liquid glass */
+.glass{background:rgba(255,255,255,.03);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 1px rgba(255,255,255,.12);position:relative}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.2) 20%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.2) 80%,rgba(255,255,255,.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1.4rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.brand{font:600 1.5rem var(--sans);letter-spacing:-.02em;text-decoration:none}
+nav{display:flex;gap:2.25rem}
+nav a{text-decoration:none;color:var(--muted);padding:.3rem 0;border-bottom:2px solid transparent;transition:color .2s}
+nav a:hover{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--ink);border-color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:500 .95rem var(--sans);padding:.8rem 1.5rem;border-radius:999px;text-decoration:none;color:var(--ink);transition:background .2s,transform .2s}
+.btn.solid{background:#fff;color:#000}
+.btn.solid:hover{background:rgba(255,255,255,.88)}
+.btn.glass:hover{background:rgba(255,255,255,.1)}
+.btn svg{width:17px;height:17px}
+
+.view[hidden]{display:none}
+.view{min-height:calc(100vh - 150px);padding-block:4rem}
+h1,h2{font-family:var(--sans);font-weight:600;letter-spacing:-.03em}
+h1{font-size:clamp(2.7rem,6vw,4.9rem);line-height:1.04}
+h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;margin-bottom:2.5rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font:500 .8rem var(--mono);padding:.5rem 1.1rem;border-radius:999px;margin-bottom:1.75rem;color:rgba(255,255,255,.85)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block;animation:pulse 2.4s ease-in-out infinite}
+.lede{max-width:34rem;color:var(--muted);font-size:1.15rem;margin:1.75rem 0 2.25rem}
+.actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+.flow{border-radius:28px;padding:1.75rem 2rem}
+.flow-head,.status{display:flex;justify-content:space-between;gap:1rem;font-size:.8rem;color:rgba(255,255,255,.5)}
+.flow ol{list-style:none;padding:0;margin:1.4rem 0}
+.flow li{position:relative;display:flex;align-items:center;gap:1.1rem}
+.badge{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:500 .85rem var(--mono);border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.badge.hot{border-color:var(--amber);color:var(--amber);background:rgba(255,198,107,.14);box-shadow:0 0 18px rgba(255,198,107,.25)}
+.flow strong{display:block;font-weight:500;font-size:1.1rem;line-height:1.3}
+.flow li span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4}
+.flow li.link{display:block;height:34px;padding-left:54px;font:400 .78rem/34px var(--mono);color:rgba(255,255,255,.45)}
+.flow li.link::before{content:"";position:absolute;left:17px;top:0;bottom:0;width:1px;background:rgba(255,255,255,.28)}
+.flow li.link::after{content:"";position:absolute;left:15px;top:0;width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);animation:packet 2.4s linear infinite;animation-delay:var(--d,0s)}
+.status{border-top:1px solid var(--line);padding-top:1.1rem;font-weight:500;color:rgba(255,255,255,.85)}
+.status .dot{margin-right:.6rem}
+.ok{color:var(--amber)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:5rem}
+.facts div{border-top:1px solid var(--line);padding-top:1.5rem}
+.facts small{display:block;font:400 .8rem var(--mono);color:rgba(255,255,255,.5);margin-bottom:.5rem}
+.facts p{font:500 1.4rem/1.3 var(--sans);letter-spacing:-.01em}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.card{border-radius:28px;padding:2rem 2.25rem 2.25rem;min-height:370px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s,background .3s}
+.card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06)}
+.card .n{font:400 .85rem var(--mono);color:rgba(255,255,255,.5)}
+.card h3{font:500 clamp(1.6rem,2.6vw,2.15rem)/1.15 var(--sans);letter-spacing:-.02em;margin-bottom:.8rem}
+.card p{color:var(--muted);font-size:1rem;line-height:1.6;margin-bottom:1.25rem}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.tags span{font:500 .74rem var(--mono);padding:.3rem .8rem;border:1px solid var(--line);border-radius:999px;color:rgba(255,255,255,.8)}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about .st{font:500 clamp(1.6rem,3vw,2.4rem)/1.25 var(--sans);letter-spacing:-.02em}
+dl{border-top:1px solid var(--line)}
+dl div{display:grid;grid-template-columns:9rem 1fr;gap:1.5rem;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+dt{font:400 .8rem/1.9 var(--mono);color:rgba(255,255,255,.5)}
+dd{color:rgba(255,255,255,.92)}
+.roles{border-top:1px solid var(--line)}
+.about .sub{color:var(--muted);margin-top:1.25rem;max-width:34rem}
+.applied{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
+.applied section{border-radius:28px;padding:2rem 2.25rem}
+.applied h3{font:500 1.6rem var(--sans);letter-spacing:-.02em;margin-bottom:1rem}
+.applied ul{list-style:none;padding:0}
+.applied li{position:relative;padding:.7rem 0 .7rem 1.4rem;color:var(--muted);border-top:1px solid var(--line);font-size:1rem;line-height:1.5}
+.applied li::before{content:"";position:absolute;left:0;top:1.3rem;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.role{display:grid;grid-template-columns:15rem 1fr;gap:3rem;padding:2rem 0;border-bottom:1px solid var(--line)}
+.role time{font:400 .85rem/2 var(--mono);color:rgba(255,255,255,.5)}
+.role h3{font:500 clamp(1.5rem,2.6vw,2rem)/1.2 var(--sans);letter-spacing:-.02em;margin-bottom:.6rem}
+.role p{color:var(--muted);max-width:44rem}
+
+.cta{text-align:center;display:flex;align-items:center;justify-content:center}
+.cta h2{font-size:clamp(2.6rem,7vw,5.2rem);max-width:15ch;margin:0 auto 1.25rem}
+.cta p{color:var(--muted);max-width:34rem;margin:0 auto 2.25rem;font-size:1.15rem}
+.cta .actions{justify-content:center}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.1);padding-block:1.5rem 2.25rem;font-size:.85rem;color:rgba(255,255,255,.5)}
+footer a{text-decoration:none;margin-left:1.5rem}
+footer a:hover{color:#fff}
+
+::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal}
+::view-transition-old(root){animation:.4s ease both out}
+::view-transition-new(root){animation:.65s cubic-bezier(.75,0,.15,1) both wipe}
+@keyframes out{to{opacity:.35;transform:translateX(-3%)}}
+@keyframes wipe{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(255,198,107,0)}0%{box-shadow:0 0 0 0 rgba(255,198,107,.5)}}
+@keyframes packet{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(29px);opacity:0}}
+.intro .copy>*,.intro .flow{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.intro .copy>:nth-child(2){animation-delay:.1s}.intro .copy>:nth-child(3){animation-delay:.2s}.intro .copy>:nth-child(4){animation-delay:.3s}.intro .flow{animation-delay:.35s}
+
+@media (max-width:860px){
+  .hero,.about,.cards,.applied{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr;margin-top:3rem}
+  header>.btn{display:none}
+  nav{gap:1.2rem;font-size:.95rem}
+  .role{grid-template-columns:1fr;gap:.2rem}
+  dl div{grid-template-columns:1fr;gap:.1rem}
+}
+@media (prefers-reduced-motion:reduce){*,::view-transition-old(root),::view-transition-new(root){animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<header class="wrap">
+  <a class="brand" href="#home" data-nav>Abdulrahem</a>
+  <nav aria-label="Main">
+    <a href="#work" data-nav>Work</a>
+    <a href="#about" data-nav>About</a>
+    <a href="#experience" data-nav>Experience</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+  <a class="btn glass" href="#contact" data-nav>Contact me</a>
+</header>
+
+<main class="wrap">
+  <section class="view" id="home" aria-labelledby="home-title">
+    <div class="hero">
+      <div class="copy">
+        <span class="eyebrow glass"><i class="dot"></i>Backend and AI Engineer</span>
+        <h1 id="home-title" tabindex="-1">Backend systems and AI agents, built for production.</h1>
+        <p class="lede">I’m Abdulrahem, an AI engineer based in Egypt, specializing in Python backends and language-model agents. I design, test, and deploy production services, from data modeling and API design through to cloud delivery.</p>
+        <div class="actions">
+          <a class="btn solid" href="#work" data-nav>View selected work</a>
+          <a class="btn glass" href="#contact" data-nav>Contact me</a>
+        </div>
+      </div>
+      <aside class="flow glass" aria-label="Request flow through an AI service">
+        <div class="flow-head mono"><span>Request flow</span><span>AI service architecture</span></div>
+        <ol>
+          <li><b class="badge">1</b><div><strong>Client</strong><span>Next.js, Unreal Engine C++</span></div></li>
+          <li class="link" style="--d:0s">HTTP and JSON</li>
+          <li><b class="badge">2</b><div><strong>API layer</strong><span>FastAPI with Pydantic validation</span></div></li>
+          <li class="link" style="--d:.8s">Orchestration</li>
+          <li><b class="badge hot">3</b><div><strong>AI agent</strong><span>Tool-calling language model (Ollama, OpenAI Agents SDK)</span></div></li>
+          <li class="link" style="--d:1.6s">Queries</li>
+          <li><b class="badge">4</b><div><strong>Data layer</strong><span>SQLite and PostgreSQL</span></div></li>
+        </ol>
+        <div class="status mono"><span><i class="dot"></i>POST /chat</span><span class="ok">200 OK</span></div>
+      </aside>
+    </div>
+    <div class="facts">
+      <div><small>Education</small><p>B.Sc. in Artificial Intelligence</p></div>
+      <div><small>Core stack</small><p>Python, FastAPI, LLM agents</p></div>
+      <div><small>Also working with</small><p>Next.js, TypeScript, Unreal Engine</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="work" aria-labelledby="work-title" hidden>
+    <h2 id="work-title" tabindex="-1">Selected work</h2>
+    <!-- EDIT: wrap each card in a link to its repo or live site once you have them -->
+    <div class="cards">
+      <article class="card glass"><span class="n">01</span><div><h3>Real Estate AI Assistant</h3><p>An agentic recommendation system for a real estate company. The assistant interprets a buyer’s requirements, searches the property database, and sends the location link for the matching estate. Delivered as a FastAPI service with a locally hosted language model, verified from an Unreal Engine C++ client, and being extended with tool-calling orchestration through the OpenAI Agents SDK.</p><div class="tags"><span>FastAPI</span><span>Ollama</span><span>SQLite</span><span>Unreal C++</span></div></div></article>
+      <article class="card glass"><span class="n">02</span><div><h3>Smart Finance Tracker</h3><p>A production-deployed finance platform that categorizes transactions automatically, tracks budgets, and detects anomalous spending with an Isolation Forest model. Implemented with FastAPI, Pydantic v2, and SQLite, covered by an automated pytest suite, containerized with Docker, and deployed to Railway.</p><div class="tags"><span>FastAPI</span><span>scikit-learn</span><span>Docker</span><span>Railway</span></div></div></article>
+      <article class="card glass"><span class="n">03</span><div><h3>Family Watch</h3><p>A web platform for a luxury watch and jewelry brand, built on Next.js, React, and TypeScript. My responsibilities span the page-transition layer, the supporting backend, online payment integration on a Prisma and PostgreSQL data layer, and the CRM implementation.</p><div class="tags"><span>Next.js</span><span>TypeScript</span><span>Payments</span><span>CRM</span></div></div></article>
+      <article class="card glass"><span class="n">04</span><div><h3>Stride Fitness App</h3><p>A fitness coaching platform that connects coaches with clients through workout programming and progress tracking, with an AI assistant that answers trainee questions in context. Architected on FastAPI and PostgreSQL with a Next.js front end.</p><div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Next.js</span><span>LLM agent</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="view" id="about" aria-labelledby="about-title" hidden>
+    <h2 id="about-title" tabindex="-1">About</h2>
+    <div class="about">
+      <div><p class="st">I engineer backend systems and AI agents for production, and I am extending that foundation into immersive web and real-time 3D experiences.</p><p class="sub">My work centers on dependable APIs, tested and containerized services, and language-model agents that act on real data.</p></div>
+      <dl>
+        <div><dt>Backend</dt><dd>Python, FastAPI, REST APIs, Pydantic, pytest</dd></div>
+        <div><dt>Data</dt><dd>PostgreSQL, SQLite, Prisma ORM</dd></div>
+        <div><dt>AI and ML</dt><dd>LLM agents (Ollama, OpenAI Agents SDK, Google GenAI), tool calling, scikit-learn, anomaly detection</dd></div>
+        <div><dt>Front end</dt><dd>Next.js, React, TypeScript, HTML and CSS, page transitions</dd></div>
+        <div><dt>Integrations</dt><dd>Online payments, CRM, Cloudinary, Unreal Engine C++ HTTP clients</dd></div>
+        <div><dt>Delivery</dt><dd>Docker, Railway, Vercel, Git and GitHub</dd></div>
+        <div><dt>Expanding into</dt><dd>Three.js, WebXR, glTF, PyTorch</dd></div>
+        <div><dt>Education</dt><dd>B.Sc. in Artificial Intelligence</dd></div>
+        <!-- EDIT: confirm the languages you want listed -->
+        <div><dt>Languages</dt><dd>Arabic and English</dd></div>
+      </dl>
+    </div>
+    <div class="applied">
+      <section class="glass"><h3>Backend engineering</h3><ul>
+        <li>RESTful services in FastAPI with Pydantic request validation</li>
+        <li>Relational data modeling in SQLite, and in PostgreSQL through Prisma</li>
+        <li>Online payment integration with payment-attempt tracking</li>
+        <li>CRM implementation for a commercial web platform</li>
+        <li>Agent orchestration with tool calling on local and hosted language models</li>
+        <li>Production machine learning: anomaly detection with scikit-learn</li>
+        <li>Automated testing with pytest, Docker packaging, and cloud deployment</li>
+      </ul></section>
+      <section class="glass"><h3>Front-end engineering</h3><ul>
+        <li>Application development in Next.js, React, and TypeScript</li>
+        <li>Page-transition implementation for an immersive storefront</li>
+        <li>Chat interface integration in Unreal Engine through a C++ HTTP client</li>
+        <li>HTML and JavaScript interfaces for data-driven dashboards</li>
+        <li>This portfolio: accessible navigation, view transitions, and an animated canvas background</li>
+      </ul></section>
+    </div>
+  </section>
+
+  <section class="view" id="experience" aria-labelledby="exp-title" hidden>
+    <h2 id="exp-title" tabindex="-1">Experience</h2>
+    <!-- EDIT: confirm your job title and add dates for each role -->
+    <div class="roles">
+      <div class="role"><time>September 2026 to present</time><div><h3>Visioned Tech</h3><p>Backend and AI integration for immersive 3D experiences delivered to real estate clients. Responsibilities span web development, Unreal Engine C++ integration, and the AI agent that powers the in-experience chat interface.</p></div></div>
+      <div class="role"><time>Completed</time><div><h3>AI intern, ValleySoft</h3><p>Developed OCR pipelines orchestrated by language-model agents.</p></div></div>
+    </div>
+  </section>
+
+  <section class="view cta" id="contact" aria-labelledby="contact-title" hidden>
+    <div>
+      <h2 id="contact-title" tabindex="-1">Let’s discuss your next project.</h2>
+      <p>Available for backend engineering, AI, and immersive web roles in Saudi Arabia and remotely. Send a brief note about your project and I will respond promptly.</p>
+      <div class="actions">
+        <!-- EDIT: replace with your real developer email -->
+        <a class="btn glass" href="mailto:hello@abdulrahem.me">Contact me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+        <a class="btn solid" href="https://github.com/Rahem-dev">View GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap"><span>© 2026 Abdulrahem</span><span><a href="#work" data-nav>Work</a><a href="#about" data-nav>About</a><a href="https://github.com/Rahem-dev">GitHub</a></span></footer>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Views and page transitions (View Transitions API) ---------- */
+const views = [...document.querySelectorAll('.view')];
+const links = [...document.querySelectorAll('a[data-nav]')];
+const titles = {home:'Backend and AI Engineer', work:'Selected work', about:'About', experience:'Experience', contact:'Contact'};
+const currentId = () => { const id = location.hash.slice(1); return views.some(v => v.id === id) ? id : 'home'; };
+function render(focus){
+  const id = currentId();
+  views.forEach(v => v.hidden = v.id !== id);
+  links.forEach(a => a.getAttribute('href') === '#' + id ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
+  document.title = 'Abdulrahem | ' + titles[id];
+  window.scrollTo(0,0);
+  if(focus) document.querySelector('#' + id + ' [tabindex="-1"]').focus({preventScroll:true});
+}
+const go = focus => (reduce || !document.startViewTransition) ? render(focus) : document.startViewTransition(() => render(focus));
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-nav]'); if(!a) return;
+  e.preventDefault();
+  if(location.hash !== a.hash){ history.pushState(null,'',a.hash); go(true); }
+});
+addEventListener('popstate', () => go(true));
+if(!reduce) document.querySelector('.hero').classList.add('intro');
+render(false);
+
+/* ---------- Animated background: glow, node network, moving grid floor ---------- */
+const cv = document.getElementById('bg'), g = cv.getContext('2d');
+let W, H, nodes = [], mx = -999, my = -999;
+const line = (a,b,c,d) => { g.beginPath(); g.moveTo(a,b); g.lineTo(c,d); g.stroke(); };
+function glow(x,y,r,rgb,a){
+  const k = g.createRadialGradient(x,y,0,x,y,r);
+  k.addColorStop(0,`rgba(${rgb},${a})`); k.addColorStop(1,`rgba(${rgb},0)`);
+  g.fillStyle = k; g.fillRect(x-r,y-r,2*r,2*r);
+}
+function resize(){
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W*dpr; cv.height = H*dpr; g.setTransform(dpr,0,0,dpr,0,0);
+  const n = Math.round(Math.min(85, Math.max(36, W*H/17000)));
+  nodes = Array.from({length:n}, (_,i) => ({x:Math.random()*W, y:Math.random()*H*.68, vx:(Math.random()-.5)*.2, vy:(Math.random()-.5)*.2, amber:i%9===0}));
+  draw(0);
+}
+function draw(t){
+  g.clearRect(0,0,W,H);
+  const s = Math.sin(t/9000), c = Math.cos(t/11000), px = mx < 0 ? 0 : mx/W - .5;
+  glow(W*.72 + s*90 - px*40, H*.1 + c*40, Math.max(W,H)*.6, '108,128,255', .3);
+  glow(W*.08 + c*70 - px*30, H*.58 + s*50, Math.max(W,H)*.45, '255,198,107', .13);
+  // grid floor: horizontal lines travel toward the viewer
+  const hy = H*.64, vx = W/2 - px*70, ph = (t/7000) % 1, N = 9;
+  g.lineWidth = 1; g.strokeStyle = 'rgba(255,198,107,.26)'; line(0,hy,W,hy);
+  for(let k = 0; k < N; k++){ const u = (k + ph)/N, y = hy + (H-hy)*u*u; g.strokeStyle = `rgba(255,255,255,${.03 + .13*u})`; line(0,y,W,y); }
+  const gr = g.createLinearGradient(0,hy,0,H); gr.addColorStop(0,'rgba(255,255,255,.02)'); gr.addColorStop(1,'rgba(255,255,255,.16)');
+  g.strokeStyle = gr; for(let i = -12; i <= 12; i++) line(vx,hy,vx + i*(W/7),H);
+  // node network
+  for(const p of nodes){ if(!reduce){ p.x += p.vx; p.y += p.vy; } if(p.x < 0 || p.x > W) p.vx *= -1; if(p.y < 0 || p.y > H*.7) p.vy *= -1; }
+  for(let i = 0; i < nodes.length; i++) for(let j = i+1; j < nodes.length; j++){
+    const d = Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y);
+    if(d < 150){ g.strokeStyle = `rgba(255,255,255,${.15*(1-d/150)})`; line(nodes[i].x,nodes[i].y,nodes[j].x,nodes[j].y); }
+  }
+  for(const p of nodes){
+    const d = Math.hypot(p.x-mx, p.y-my);
+    if(d < 170){ g.strokeStyle = `rgba(255,198,107,${.4*(1-d/170)})`; line(p.x,p.y,mx,my); }
+    g.fillStyle = p.amber ? 'rgba(255,198,107,.95)' : 'rgba(255,255,255,.5)';
+    g.beginPath(); g.arc(p.x,p.y,p.amber ? 2.6 : 1.6,0,6.283); g.fill();
+    if(p.amber){ g.strokeStyle = 'rgba(255,198,107,.25)'; g.beginPath(); g.arc(p.x,p.y,8,0,6.283); g.stroke(); }
+  }
+}
+addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
+addEventListener('resize', resize);
+resize();
+if(!reduce) requestAnimationFrame(function loop(t){ draw(t); requestAnimationFrame(loop); });
+</script>
+</body>
 </html>
